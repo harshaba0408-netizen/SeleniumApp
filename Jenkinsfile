@@ -23,7 +23,7 @@ sh 'mvn test'
 }
 stage('Run selenium'){
 steps{
-sh 'mvn exec:java -Dexec.mainClass="com.example.App"
+sh 'mvn exec:java -Dexec.mainClass="com.example.App"'
 }
 }
 }
