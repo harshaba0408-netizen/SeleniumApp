@@ -39,7 +39,12 @@ public class App {
             driver.findElement(By.id("login-button"))
                     .click();
 
-            System.out.println("Login Successful");
+            driver.get("https://www.saucedemo.com/");
+
+System.out.println("URL: " + driver.getCurrentUrl());
+System.out.println("Title: " + driver.getTitle());
+System.out.println("Logged-in URL: " + driver.getCurrentUrl());
+System.out.println("Login Successful");
 
         } finally {
 
