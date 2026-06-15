@@ -11,44 +11,40 @@ public class App {
 
     public static void main(String[] args) {
 
-        // Automatically download and configure matching ChromeDriver
         WebDriverManager.chromedriver().setup();
 
         ChromeOptions options = new ChromeOptions();
 
-        // Specify Chrome location
-        options.setBinary("/opt/google/chrome/google-chrome");
+        options.setBinary("/usr/bin/google-chrome");
 
-        // Required for Jenkins/Linux
-        options.addArguments("--headless=new");
+        options.addArguments("--headless");
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--disable-gpu");
+        options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--window-size=1920,1080");
 
         WebDriver driver = new ChromeDriver(options);
 
         try {
 
             driver.get("https://www.saucedemo.com/");
-            driver.manage().window().maximize();
 
             driver.findElement(By.id("user-name"))
-                  .sendKeys("standard_user");
+                    .sendKeys("standard_user");
 
             driver.findElement(By.id("password"))
-                  .sendKeys("secret_sauce");
+                    .sendKeys("secret_sauce");
 
             driver.findElement(By.id("login-button"))
-                  .click();
+                    .click();
 
             System.out.println("Login Successful");
-
-        } catch (Exception e) {
-
-            e.printStackTrace();
 
         } finally {
 
             driver.quit();
+
         }
     }
 }
